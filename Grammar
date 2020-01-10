@@ -1,0 +1,156 @@
+# Grammar File that defines grammar rule and takes effect while sentence parsing proceeding.
+
+
+S -> NP VP
+NP -> NsubjP
+
+# subject noun phrase
+NsubjP -> Np | NproperP | Nsubjpron
+
+# object noun phrase
+NobjP -> Np | NproperP | Nobjpron
+
+# regular noun phrase
+Np -> N | Det N | Det AdjP N | AdjP N | Np PP
+
+# proper noun phrase
+NproperP -> Nproper | Det AdjP Nproper | AdjP Nproper
+
+PP -> P NobjP
+
+AdjP -> Adj | Adj AdjP
+AdvP -> Adv | PP AdvP
+
+
+VP -> VtrP | AuxP | VintrP
+
+# VP of intransitive verb
+VintrP -> Vintr | Vintr AdvP | Adv Vintr | VintrP PP
+
+
+# =====================
+# VP of auxiliary verb
+AuxP -> PerfectV | BeV | MdV | MdPerfectV
+
+# progressive passive VP
+VprogpassP -> Vprogpass | Vprogpass AdvP | Adv Vprogpass | VprogpassP PP
+Vprogpass -> BEprestp VpastpPassive | BEprestp Adv VpastpPassive
+
+# passive VP
+VpassP -> Vpass | Vpass AdvP | Adv Vpass | VpassP PP
+
+# past participle verb for subject-predicate VP
+VpastpSubjP -> VpastpSubj | VpastpSubj AdvP | Adv VpastpSubj | VpastpSubjP  PP
+
+# past participle verb for passive-voice VP
+VpastpPassiveP -> VpastpPassive | VpastpPassive AdvP | Adv VpastpPassive | VpastpPassiveP PP
+
+# progressive VP
+VprogP -> Vprog | Vprog AdvP | Adv Vprog | VprogP PP
+
+# present VP
+VprestP -> Vprest | Vprest AdvP | Adv Vprest | VprestP PP
+
+AuxPrefect -> SingularPerfect | PluralPerfect | PastPrefect
+
+PerfectV -> AuxPrefect VpastpSubjP | AuxPrefect BEpastp VpastpPassiveP | AuxPrefect BEpastp VprogP | AuxPrefect BEpastp VprogpassP
+# add possible position for Adv
+PerfectV -> Adv AuxPrefect VpastpSubjP | Adv AuxPrefect BEpastp VpastpPassiveP | AuxPrefect Adv BEpastp VpastpPassiveP  | Adv AuxPrefect BEpastp VprogP | AuxPrefect Adv BEpastp VprogP| Adv AuxPrefect BEpastp VprogpassP | AuxPrefect Adv BEpastp VprogpassP
+
+
+BeV -> BEpass VprogP | BEpass VpastpPassiveP | BEpass VprogpassP
+
+MdV -> AuxMd VprestP | AuxMd BE VpastpPassiveP | AuxMd BE VprogP | AuxMd BE VprogpassP
+# add possible position for Adv
+MdV -> Adv AuxMd VprestP | Adv AuxMd BE VpastpPassiveP | AuxMd Adv BE VpastpPassiveP | Adv AuxMd BE VprogP | AuxMd Adv BE VprogP | Adv AuxMd BE VprogpassP | AuxMd Adv BE VprogpassP
+
+MdPerfectV -> AuxMd PluralPerfect VpastpSubjP | AuxMd PluralPerfect BEpastp VpastpPassiveP | AuxMd PluralPerfect BEpastp VprogP | AuxMd PluralPerfect BEpastp VprogpassP
+# add possible position for Adv
+MdPerfectV -> Adv AuxMd PluralPerfect VpastpSubjP | AuxMd Adv PluralPerfect VpastpSubjP
+MdPerfectV -> Adv AuxMd PluralPerfect BEpastp VpastpPassiveP | AuxMd Adv PluralPerfect BEpastp VpastpPassiveP | AuxMd PluralPerfect Adv BEpastp VpastpPassiveP
+MdPerfectV -> Adv AuxMd PluralPerfect BEpastp VprogP | AuxMd Adv PluralPerfect BEpastp VprogP | AuxMd PluralPerfect Adv BEpastp VprogP
+MdPerfectV -> Adv AuxMd PluralPerfect BEpastp VprogpassP | AuxMd Adv PluralPerfect BEpastp VprogpassP | AuxMd PluralPerfect Adv BEpastp VprogpassP
+
+
+# =====================
+# VP of transitive verb
+VtrP -> V_with_NP_Phrase | V_with_NP_NP_Phrase | V_with_PP_Phrase | V_with_NP_PP_Phrase | V_with_S_Phrase | V_with_toVP_Phrase | V_with_NPtoVP_Phrase
+
+# original VP for sentence like want to do
+VdoP -> Vprest | Vprest AdvP | Adv Vprest | VdoP PP
+
+# to be NP
+VbeNP -> BE NobjP
+
+# VP for verb followed by NP
+V_with_NP_Phrase -> Vpast_with_NP NobjP | Adv Vpast_with_NP NobjP | Vpast_with_NP NobjP AdvP | V_with_NP_Phrase PP
+Vprest_with_NP_Phrase -> Vprest_with_NP NobjP | Adv Vprest_with_NP NobjP | Vprest_with_NP NobjP AdvP | Vprest_with_NP_Phrase PP
+
+# VP for verb followed by NP NP
+V_with_NP_NP_Phrase -> Vpast_with_NP_NP NobjP NobjP | Adv Vpast_with_NP_NP NobjP NobjP | Vpast_with_NP_NP NobjP NobjP AdvP | V_with_NP_NP_Phrase PP
+Vprest_with_NP_NP_Phrase -> Vprest_with_NP_NP NobjP NobjP | Adv Vprest_with_NP_NP NobjP NobjP | Vprest_with_NP_NP NobjP NobjP AdvP | Vprest_with_NP_NP_Phrase PP
+
+# VP for verb followed by PP
+V_with_PP_Phrase -> Vpast_with_PP PP | Vpast_with_PP Adv PP | Adv Vpast_with_PP PP | Vpast_with_PP PP AdvP | V_with_PP_Phrase PP
+Vprest_with_PP_Phrase -> Vprest_with_PP PP | Vprest_with_PP Adv PP | Adv Vprest_with_PP PP | Vprest_with_PP PP AdvP | Vprest_with_PP_Phrase PP
+
+# VP for verb followed by PP  i.e. the elepant reminded Nadia of Ross
+V_with_NP_PP_Phrase -> Vpast_with_NP_PP NobjP PP | Vpast_with_NP_PP NobjP Adv PP | Adv Vpast_with_NP_PP NobjP PP | Vpast_with_NP_PP NobjP PP AdvP | V_with_NP_PP_Phrase PP
+Vprest_with_NP_PP_Phrase -> Vprest_with_NP_PP NobjP PP | Vprest_with_NP_PP Adv NobjP PP | Adv Vprest_with_NP_PP NobjP PP | Vprest_with_NP_PP NobjP PP AdvP | Vprest_with_NP_PP_Phrase PP
+
+# VP for verb followed by a sentence
+V_with_S_Phrase -> Vpast_with_S S | Adv Vpast_with_S S | Vpast_with_S AdvP S | Vpast_with_S Conj S | Adv Vpast_with_S Conj S | Vpast_with_S AdvP Conj S | V_with_S_Phrase PP
+Vprest_with_S_Phrase -> Vprest_with_S S | Adv Vprest_with_S S | Vprest_with_S AdvP S | Vprest_with_S Conj S | Adv Vprest_with_S Conj S | Vprest_with_S AdvP Conj S | Vprest_with_S_Phrase PP
+
+# VP for verb followed by [to do]
+V_with_toVP_Phrase -> Vpast_with_toVP Pto VdoP | Adv Vpast_with_toVP Pto VdoP | Vpast_with_toVP Pto VdoP AdvP | V_with_toVP_Phrase PP
+V_with_toVP_Phrase -> Vpast_with_toVP Pto Vprest_with_NP_Phrase | Adv Vpast_with_toVP Pto Vprest_with_NP_Phrase| Vpast_with_toVP Pto Vprest_with_NP_Phrase AdvP | V_with_toVP_Phrase PP
+V_with_toVP_Phrase -> Vpast_with_toVP Pto Vprest_with_NP_NP_Phrase | Adv Vpast_with_toVP Pto Vprest_with_NP_NP_Phrase | Vpast_with_toVP Pto Vprest_with_NP_NP_Phrase AdvP | V_with_toVP_Phrase PP
+V_with_toVP_Phrase -> Vpast_with_toVP Pto Vprest_with_PP_Phrase | Adv Vpast_with_toVP Pto Vprest_with_PP_Phrase | Vpast_with_toVP Pto Vprest_with_PP_Phrase AdvP | V_with_toVP_Phrase PP
+V_with_toVP_Phrase -> Vpast_with_toVP Pto Vprest_with_NP_PP_Phrase | Adv Vpast_with_toVP Pto Vprest_with_NP_PP_Phrase | Vpast_with_toVP Pto Vprest_with_NP_PP_Phrase AdvP | V_with_toVP_Phrase PP
+V_with_toVP_Phrase -> Vpast_with_toVP Pto Vprest_with_S_Phrase | Adv Vpast_with_toVP Pto Vprest_with_S_Phrase | Vpast_with_toVP Pto Vprest_with_S_Phrase AdvP | V_with_toVP_Phrase PP
+V_with_toVP_Phrase -> Vpast_with_toVP Pto VbeNP | Adv Vpast_with_toVP Pto VbeNP | Vpast_with_toVP Pto VbeNP AdvP | V_with_toVP_Phrase PP
+V_with_toVP_Phrase -> Vpast_with_toVP Pto BE VpassP | Adv Vpast_with_toVP Pto BE VpassP | Vpast_with_toVP Pto BE VpassP AdvP | V_with_toVP_Phrase PP
+
+
+
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto VdoP | Adv Vprest_with_toVP Pto VdoP | Vprest_with_toVP Pto VdoP AdvP | Vprest_with_toVP_Phrase PP
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto Vprest_with_NP_Phrase | Adv Vprest_with_toVP Pto Vprest_with_NP_Phrase| Vprest_with_toVP Pto Vprest_with_NP_Phrase AdvP | Vprest_with_toVP_Phrase PP
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto Vprest_with_NP_NP_Phrase | Adv Vprest_with_toVP Pto Vprest_with_NP_NP_Phrase | Vprest_with_toVP Pto Vprest_with_NP_NP_Phrase AdvP | Vprest_with_toVP_Phrase PP
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto Vprest_with_PP_Phrase | Adv Vprest_with_toVP Pto Vprest_with_PP_Phrase | Vprest_with_toVP Pto Vprest_with_PP_Phrase AdvP | Vprest_with_toVP_Phrase PP
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto Vprest_with_NP_PP_Phrase | Adv Vprest_with_toVP Pto Vprest_with_NP_PP_Phrase | Vprest_with_toVP Pto Vprest_with_NP_PP_Phrase AdvP | Vprest_with_toVP_Phrase PP
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto Vprest_with_S_Phrase | Adv Vprest_with_toVP Pto Vprest_with_S_Phrase | Vprest_with_toVP Pto Vprest_with_S_Phrase AdvP | Vprest_with_toVP_Phrase PP
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto VbeNP | Adv Vprest_with_toVP Pto VbeNP | Vprest_with_toVP Pto VbeNP AdvP | Vprest_with_toVP_Phrase PP
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto BE VpassP | Adv Vprest_with_toVP Pto BE VpassP | Vprest_with_toVP Pto BE VpassP AdvP | Vprest_with_toVP_Phrase PP
+
+Vprest_with_toVP_Phrase -> Vprest_with_toVP Pto Vprest_with_NPtoVP_Phrase | Adv Vprest_with_toVP Pto Vprest_with_NPtoVP_Phrase | Vprest_with_toVP Pto Vprest_with_NPtoVP_Phrase AdvP | Vprest_with_toVP_Phrase PP
+
+
+# verb for VP followed by NP to do  i.e. Nadia wanted Ross to jump
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto VdoP | Adv Vpast_with_NPtoVP NobjP Pto VdoP | Vpast_with_NPtoVP NobjP Pto VdoP AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_Phrase| Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_Phrase AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_NP_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_NP_Phrase | Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_NP_Phrase AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_PP_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_PP_Phrase | Vpast_with_NPtoVP NobjP Pto Vprest_with_PP_Phrase AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_PP_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_PP_Phrase | Vpast_with_NPtoVP NobjP Pto Vprest_with_NP_PP_Phrase AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase | Vpast_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_S_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_S_Phrase | Vpast_with_NPtoVP NobjP Pto Vprest_with_S_Phrase AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto VbeNP | Adv Vpast_with_NPtoVP NobjP Pto VbeNP | Vpast_with_NPtoVP NobjP Pto VbeNP AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto BE VpassP | Adv Vpast_with_NPtoVP NobjP Pto BE VpassP | Vpast_with_NPtoVP NobjP Pto BE VpassP AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_NPtoVP_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_NPtoVP_Phrase | Vpast_with_NPtoVP NobjP Pto Vprest_with_NPtoVP_Phrase AdvP | V_with_NPtoVP_Phrase PP
+
+
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto VdoP | Adv Vprest_with_NPtoVP NobjP Pto VdoP | Vprest_with_NPtoVP NobjP Pto VdoP AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_Phrase | Adv Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_Phrase| Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_Phrase AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_NP_Phrase | Adv Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_NP_Phrase | Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_NP_Phrase AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto Vprest_with_PP_Phrase | Adv Vprest_with_NPtoVP NobjP Pto Vprest_with_PP_Phrase | Vprest_with_NPtoVP NobjP Pto Vprest_with_PP_Phrase AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_PP_Phrase | Adv Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_PP_Phrase | Vprest_with_NPtoVP NobjP Pto Vprest_with_NP_PP_Phrase AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase | Adv Vprest_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase | Vprest_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto Vprest_with_S_Phrase | Adv Vprest_with_NPtoVP NobjP Pto Vprest_with_S_Phrase | Vprest_with_NPtoVP NobjP Pto Vprest_with_S_Phrase AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto VbeNP | Adv Vprest_with_NPtoVP NobjP Pto VbeNP | Vprest_with_NPtoVP NobjP Pto VbeNP AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto BE VpassP | Adv Vprest_with_NPtoVP NobjP Pto BE VpassP | Vprest_with_NPtoVP NobjP Pto BE VpassP AdvP | Vprest_with_NPtoVP_Phrase PP
+
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto Vprest_with_NPtoVP_Phrase | Adv Vprest_with_NPtoVP NobjP Pto Vprest_with_NPtoVP_Phrase | Vprest_with_NPtoVP NobjP Pto Vprest_with_NPtoVP_Phrase AdvP | Vprest_with_NPtoVP_Phrase PP
+Vprest_with_NPtoVP_Phrase -> Vprest_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase  | Adv Vprest_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase | Vprest_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase AdvP | Vprest_with_NPtoVP_Phrase PP
+
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_toVP_Phrase | Vprest_with_toVP_Phrase NobjP Pto Vprest_with_toVP_Phrase AdvP | V_with_NPtoVP_Phrase PP
+V_with_NPtoVP_Phrase -> Vpast_with_NPtoVP NobjP Pto Vprest_with_NPtoVP_Phrase | Adv Vpast_with_NPtoVP NobjP Pto Vprest_with_NPtoVP_Phrase | Vprest_with_toVP_Phrase NobjP Pto Vprest_with_NPtoVP_Phrase AdvP | V_with_NPtoVP_Phrase PP

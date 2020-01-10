@@ -1,0 +1,63 @@
+# Lexicon File that stores words and their categories and functions as a dictionary.
+
+
+Nproper -> 'Nadia' | 'Ross' | 'Marseilles' | 'Google'
+Nsubjpron -> 'I' | 'you' | 'he' | 'she' | 'they' | 'it' | 'we' | 'that'
+Nobjpron -> 'me' | 'you' | 'him' | 'her' | 'them' | 'it' | 'us' | 'that'
+
+
+N -> 'fur' | 'cat' | 'notebook' | 'park' | 'dog' | 'man' | 'statue' | 'school' | 'rutabaga' | 'boat' | 'eggplant' | 'elephant' | 'poodle' | 'cloth' | 'cheese' | 'help' | 'autoclave' | 'autopoiesis' | 'hovercraft' | 'menu'
+P -> 'before' | 'after' | 'in' | 'with' | 'from' | 'to' | 'for' | 'onto' | 'on' |'of'
+Adj -> 'tall' | 'long' | 'soft' | 'black' | 'big' | 'handsome'
+Adv -> 'quickly' | 'slowly' | 'carefully' | 'suddenly' | 'immediately' | 'really' | 'always' | 'already' | 'before' | 'after' | 'here'
+Det -> 'that' | 'a' | 'the' | 'my' | 'his' | 'her' | 'their' | 'its' | 'a' | 'an'
+
+# model auxiliary verb
+AuxMd -> 'will' | 'would' | 'shall' | 'should' | 'can' | 'could' | 'may' | 'might' | 'must'
+
+SingularPerfect -> 'has'
+PluralPerfect -> 'have'
+
+PastPrefect -> 'had'
+
+BE -> 'be'
+BEpastp -> 'been'
+BEprestp -> 'being'
+BEpass -> 'am' | 'is' | 'was' | 'are' | 'were'
+
+
+Vprest -> 'give' | 'find' | 'demand' | 'reward' | 'remind' | 'help' | 'want' | 'see' | 'win' | 'believe' | 'tell' | 'run' | 'arrive' | 'aspire' | 'leave' | 'shoot' | 'eat' | 'jump' | 'fondle' | 'bring' | 'be'
+Vsingular -> 'gives' | 'finds' | 'demands' | 'rewards' | 'reminds' | 'helps' | 'wants' | 'sees' | 'wins' | 'believes' | 'tells' | 'runs' | 'arrives' | 'aspires' | 'leaves' | 'shoots' | 'eats' | 'jumps' | 'fondles' | 'brings' | 'comes'
+
+Vprog -> 'giving' | 'finding' | 'demanding' | 'rewarding' | 'reminding' | 'helping' | 'wanting' | 'seeing' | 'winning' | 'believing' | 'telling' | 'running' | 'arriving' | 'leaving' | 'shooting' | 'eating' | 'jumping' | 'fondling' | 'bringing' | 'aspiring'
+Vpass -> 'given' | 'found' | 'demanded' | 'rewarded ' | 'reminded' | 'helped' | 'wanted' | 'arrived' | 'seen' | 'won' | 'believed' | 'told' | 'kicked' | 'left' | 'aspired' | 'shot' | 'eaten' | 'fondled' | 'brought' | 'jumped'
+
+VpastpSubj ->  'given' | 'won' | 'believed' | 'kicked' | 'left' | 'jumped' | 'shot' | 'run' | 'arrived' | 'eaten' | 'helped' | 'seen' | 'aspired' | 'fondled'
+VpastpPassive -> 'given' | 'found' | 'demanded' | 'rewarded ' | 'reminded' | 'helped' | 'wanted' | 'seen'| 'won' | 'believed' | 'told' | 'kicked' | 'left' | 'aspired' | 'shot' | 'eaten' | 'fondled' | 'brought'
+
+Vintr -> 'win' | 'won' | 'believe' | 'believed' | 'come' | 'leave' | 'left' | 'eat' | 'ate' | 'see' | 'saw' | 'arrive' | 'arrived' | 'shoot' | 'shot' | 'jump' | 'jumped' | 'run' | 'ran' | 'play' | 'played'
+
+Pto -> 'to'
+
+Vpast_with_NP -> 'demanded' | 'rewarded' | 'reminded' | 'won' | 'believed' | 'brought' | 'gave' | 'saw' | 'left' | 'told' | 'fondled' | 'wanted' | 'played' | 'found' | 'helped' | 'shot' | 'ate' | 'was' | 'were'
+Vprest_with_NP -> 'demand' | 'reward' | 'remind' | 'win' | 'believe' | 'bring' | 'give' | 'see' | 'leave' | 'tell' | 'fondle' | 'want' | 'play' | 'find' | 'help' | 'shoot' | 'eat'
+
+Vpast_with_NP_NP -> 'brought' | 'gave' | 'told' | 'found'
+Vprest_with_NP_NP -> 'bring' | 'give' | 'tell' | 'find'
+
+Vpast_with_PP -> 'was' | 'were' | 'jumped'
+Vprest_with_PP -> 'be' | 'jump'
+
+Vpast_with_NP_PP -> 'gave' | 'told' | 'rewarded' | 'brought' | 'reminded' | 'helped' | 'shot'
+Vprest_with_NP_PP -> 'give' | 'tell' | 'reward' | 'bring' | 'remind' | 'help' | 'shoot'
+
+Vpast_with_S -> 'reminded' | 'said' | 'believed' | 'found' | 'demanded'
+Vprest_with_S -> 'remind' | 'say' | 'believe' | 'find' | 'demand'
+
+Vpast_with_toVP -> 'wanted' | 'aspired' | 'demanded'
+Vprest_with_toVP -> 'want' | 'aspire' | 'demand'
+
+Vpast_with_NPtoVP -> 'wanted' | 'told'
+Vprest_with_NPtoVP -> 'want' | 'tell'
+
+Conj -> 'that'
